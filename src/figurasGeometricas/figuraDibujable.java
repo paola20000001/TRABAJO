@@ -1,4 +1,6 @@
 package figurasGeometricas;
+import java.awt.*;
 
-public class figuraDibujable {
+public interface figuraDibujable {
+    void dibujar2D(Graphics g);
 }
