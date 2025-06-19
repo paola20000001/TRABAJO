@@ -1,11 +1,11 @@
 package figurasGeometricas;
 
-public class Redondo extends Forma {
-    public Redondo(double radio) { super(radio); }
-
+public class Circulo extends Figura {
+    public Circulo(double valor1) { super(valor1); }
+    
     @Override
-    public double superficie() { return Math.PI * medida * medida; }
-
+    public double getArea() { return Math.PI * valor1 * valor1; }
+    
     @Override
-    public double borde() { return 2 * Math.PI * medida; }
+    public double getPerimetro() { return 2 * Math.PI * valor1; }
 }
