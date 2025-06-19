@@ -3,34 +3,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
-public class App {
-    static RedondoPintable r;
-    static Cubo2DPintable c;
-    static TresLadosPintable t;
-
+public class Main {
+    static CirculoDibujable circulo;
+    static CuadradoDibujable cuadrado;
+    static TrianguloDibujable triangulo;
+    
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-
+        
         try {
-            System.out.print("Radio: ");
-            r = new RedondoPintable(pedirNumero(s), 50, 50);
-
+            System.out.print("Radio círculo: ");
+            circulo = new CirculoDibujable(leerNumero(s), 50, 50);
+            
             System.out.print("Lado cuadrado: ");
-            c = new Cubo2DPintable(pedirNumero(s), 200, 50);
-
+            cuadrado = new CuadradoDibujable(leerNumero(s), 200, 50);
+            
             System.out.print("Lado triángulo: ");
-            t = new TresLadosPintable(pedirNumero(s), 350, 50);
-
-            info();
-            ventana();
-
+            triangulo = new TrianguloDibujable(leerNumero(s), 350, 50);
+            
+            mostrarInfo();
+            crearVentana();
+            
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         s.close();
     }
-
-    static double pedirNumero(Scanner s) {
+    
+    static double leerNumero(Scanner s) {
         try {
             double n = s.nextDouble();
             if (n <= 0) throw new RuntimeException("Debe ser positivo");
@@ -39,28 +39,28 @@ public class App {
             throw new RuntimeException("Número inválido");
         }
     }
-
-    static void info() {
-        System.out.println("Círculo - Área: " + r.superficie() + " Perímetro: " + r.borde());
-        System.out.println("Cuadrado - Área: " + c.superficie() + " Perímetro: " + c.borde());
-        System.out.println("Triángulo - Área: " + t.superficie() + " Perímetro: " + t.borde());
+    
+    static void mostrarInfo() {
+        System.out.println("Círculo - Área: " + circulo.getArea() + " Perímetro: " + circulo.getPerimetro());
+        System.out.println("Cuadrado - Área: " + cuadrado.getArea() + " Perímetro: " + cuadrado.getPerimetro());
+        System.out.println("Triángulo - Área: " + triangulo.getArea() + " Perímetro: " + triangulo.getPerimetro());
     }
-
-    static void ventana() {
-        JFrame f = new JFrame("Formas");
-        JPanel p = new JPanel() {
+    
+    static void crearVentana() {
+        JFrame frame = new JFrame("Figuras");
+        JPanel panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                r.pintar(g);
-                c.pintar(g);
-                t.pintar(g);
+                circulo.dibujar2D(g);
+                cuadrado.dibujar2D(g);
+                triangulo.dibujar2D(g);
             }
         };
-        p.setPreferredSize(new Dimension(500, 300));
-        f.add(p);
-        f.pack();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
+        panel.setPreferredSize(new Dimension(500, 300));
+        frame.add(panel);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
