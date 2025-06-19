@@ -1,16 +1,16 @@
 package figurasGeometricas;
 
-public abstract class Forma {
-    protected double medida;
-
-    public Forma(double medida) {
-        if (medida <= 0) {
-            throw new RuntimeException("Medida inválida: " + medida);
+public abstract class Figura {
+    protected double valor1;
+    
+    public Figura(double valor1) {
+        if (valor1 <= 0) {
+            throw new RuntimeException("Valor inválido: " + valor1);
         }
-        this.medida = medida;
+        this.valor1 = valor1;
     }
-
-    public double getMedida() { return medida; }
-    public abstract double superficie();
-    public abstract double borde();
+    
+    public double getValor1() { return valor1; }
+    public abstract double getArea();
+    public abstract double getPerimetro();
 }
